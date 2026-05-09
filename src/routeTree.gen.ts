@@ -9,8 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as OdontologiaRouteImport } from './routes/odontologia'
+import { Route as MultiespacioRouteImport } from './routes/multiespacio'
+import { Route as MedicinaGeneralRouteImport } from './routes/medicina-general'
+import { Route as FonoaudiologiaRouteImport } from './routes/fonoaudiologia'
 import { Route as IndexRouteImport } from './routes/index'
 
+const OdontologiaRoute = OdontologiaRouteImport.update({
+  id: '/odontologia',
+  path: '/odontologia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MultiespacioRoute = MultiespacioRouteImport.update({
+  id: '/multiespacio',
+  path: '/multiespacio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MedicinaGeneralRoute = MedicinaGeneralRouteImport.update({
+  id: '/medicina-general',
+  path: '/medicina-general',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FonoaudiologiaRoute = FonoaudiologiaRouteImport.update({
+  id: '/fonoaudiologia',
+  path: '/fonoaudiologia',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +43,88 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/fonoaudiologia': typeof FonoaudiologiaRoute
+  '/medicina-general': typeof MedicinaGeneralRoute
+  '/multiespacio': typeof MultiespacioRoute
+  '/odontologia': typeof OdontologiaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/fonoaudiologia': typeof FonoaudiologiaRoute
+  '/medicina-general': typeof MedicinaGeneralRoute
+  '/multiespacio': typeof MultiespacioRoute
+  '/odontologia': typeof OdontologiaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/fonoaudiologia': typeof FonoaudiologiaRoute
+  '/medicina-general': typeof MedicinaGeneralRoute
+  '/multiespacio': typeof MultiespacioRoute
+  '/odontologia': typeof OdontologiaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/fonoaudiologia'
+    | '/medicina-general'
+    | '/multiespacio'
+    | '/odontologia'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/fonoaudiologia'
+    | '/medicina-general'
+    | '/multiespacio'
+    | '/odontologia'
+  id:
+    | '__root__'
+    | '/'
+    | '/fonoaudiologia'
+    | '/medicina-general'
+    | '/multiespacio'
+    | '/odontologia'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FonoaudiologiaRoute: typeof FonoaudiologiaRoute
+  MedicinaGeneralRoute: typeof MedicinaGeneralRoute
+  MultiespacioRoute: typeof MultiespacioRoute
+  OdontologiaRoute: typeof OdontologiaRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/odontologia': {
+      id: '/odontologia'
+      path: '/odontologia'
+      fullPath: '/odontologia'
+      preLoaderRoute: typeof OdontologiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/multiespacio': {
+      id: '/multiespacio'
+      path: '/multiespacio'
+      fullPath: '/multiespacio'
+      preLoaderRoute: typeof MultiespacioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medicina-general': {
+      id: '/medicina-general'
+      path: '/medicina-general'
+      fullPath: '/medicina-general'
+      preLoaderRoute: typeof MedicinaGeneralRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fonoaudiologia': {
+      id: '/fonoaudiologia'
+      path: '/fonoaudiologia'
+      fullPath: '/fonoaudiologia'
+      preLoaderRoute: typeof FonoaudiologiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +137,21 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FonoaudiologiaRoute: FonoaudiologiaRoute,
+  MedicinaGeneralRoute: MedicinaGeneralRoute,
+  MultiespacioRoute: MultiespacioRoute,
+  OdontologiaRoute: OdontologiaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
