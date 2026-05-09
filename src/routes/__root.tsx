@@ -100,7 +100,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <SiteHeader transparent />
+      <SiteHeader />
       <Outlet />
       <SiteFooter />
     </QueryClientProvider>

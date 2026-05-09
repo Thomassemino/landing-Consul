@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 const nav = [
@@ -8,7 +8,9 @@ const nav = [
   { to: "/multiespacio" as const, label: "Multiespacio" },
 ];
 
-export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
+export function SiteHeader() {
+  const location = useLocation();
+  const transparent = location.pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
