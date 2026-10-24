@@ -1,0 +1,25 @@
+services:
+  # Production-like: builds the app and serves it with `vite preview`.
+  #   docker compose up --build
+  web:
+    build: .
+    image: masconsultorios-connect:latest
+    ports:
+      - "${PORT:-8080}:8080"
+    restart: unless-stopped
+
+  # Development with hot reload, source mounted from the host.
+  #   docker compose --profile dev up dev
+  dev:
+    profiles: ["dev"]
+    image: node:22-slim
+    working_dir: /app
+    command: sh -c "npm ci && npx vite dev --host 0.0.0.0 --port 8080 --strictPort"
+    ports:
+      - "${PORT:-8080}:8080"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+
+volumes:
+  node_modules:
