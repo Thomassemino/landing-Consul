@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import logoColor from "@/assets/logo-color.webp";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
@@ -16,8 +17,14 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <span className="plus-mark text-6xl">+</span>
-        <h1 className="mt-2 text-7xl font-display">404</h1>
+        <img
+          src={logoColor}
+          alt="+consultorios"
+          width={800}
+          height={307}
+          className="mx-auto h-20 w-auto"
+        />
+        <h1 className="mt-6 text-7xl font-display">404</h1>
         <p className="mt-6 text-muted-foreground">
           La página que buscás no existe. Podemos volver al inicio cuando quieras.
         </p>
@@ -61,6 +68,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "+consultorios — Atención médica que se siente bien" },
       { name: "description", content: "Un conglomerado de consultorios médicos pensado para que tu atención se sienta tranquila, humana y profesional." },
       { name: "author", content: "+consultorios" },
+      { name: "theme-color", content: "#004b6d" },
       { property: "og:title", content: "+consultorios" },
       { property: "og:description", content: "Atención médica que se siente bien." },
       { property: "og:type", content: "website" },
@@ -68,6 +76,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
+      { rel: "icon", href: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

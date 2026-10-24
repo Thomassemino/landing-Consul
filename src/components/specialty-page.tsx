@@ -19,7 +19,7 @@ export function SpecialtyPage({ data }: { data: SpecialtyContent }) {
         <div className="container-fluid grid gap-12 py-20 lg:grid-cols-12 lg:py-32">
           <div className="lg:col-span-6 lg:pt-12">
             <p className="eyebrow animate-fade-up">{data.eyebrow}</p>
-            <h1 className="mt-6 text-5xl leading-[1.05] sm:text-6xl lg:text-7xl animate-fade-up">
+            <h1 className="mt-6 text-[2.1rem] leading-[1.05] min-[380px]:text-[2.6rem] min-[480px]:text-5xl sm:text-6xl lg:text-7xl animate-fade-up">
               {data.title}
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground animate-fade-up">

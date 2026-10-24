@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import heroImg from "@/assets/hero.jpg";
+import logoWhite from "@/assets/logo-white.webp";
+import { MessageCircle, Phone } from "lucide-react";
+import { CONTACT } from "@/lib/contact";
 import odontoImg from "@/assets/odontologia.jpg";
 import fonoImg from "@/assets/fonoaudiologia.jpg";
 import medGenImg from "@/assets/medicina-general.jpg";
@@ -111,8 +114,16 @@ function Home() {
           <p className="eyebrow !text-primary-foreground/80 animate-fade-up">
             Conglomerado de consultorios médicos
           </p>
-          <h1 className="mt-6 max-w-5xl text-[clamp(3rem,9vw,9rem)] leading-[0.95] !text-primary-foreground animate-fade-up">
-            <span className="plus-mark !text-secondary">+</span>consultorios
+          <h1 className="mt-6 animate-fade-up">
+            <span className="sr-only">+consultorios</span>
+            <img
+              src={logoWhite}
+              alt=""
+              aria-hidden="true"
+              width={800}
+              height={307}
+              className="w-[clamp(16rem,42vw,34rem)] h-auto"
+            />
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-primary-foreground/90 animate-fade-up sm:text-xl">
             Un lugar para atenderte con tranquilidad. Donde la consulta empieza
@@ -165,7 +176,7 @@ function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/70" />
 
         <div className="container-fluid relative z-10 grid gap-16 py-32 lg:grid-cols-12">
-          <div className="lg:col-span-4">
+          <div className="min-w-0 lg:col-span-4">
             <p className="eyebrow !text-primary-foreground/70">Especialidades</p>
             <h2 className="mt-6 text-5xl !text-primary-foreground lg:text-6xl">
               Elegí cómo querés cuidarte.
@@ -175,27 +186,27 @@ function Home() {
               consulta fluya sin distracciones.
             </p>
           </div>
-          <ul className="lg:col-span-8 lg:pl-8">
+          <ul className="min-w-0 lg:col-span-8 lg:pl-8">
             {specialties.map((s, i) => (
               <li key={s.slug}>
                 <Link
                   to={s.to}
                   onMouseEnter={() => setHovered(i)}
                   onMouseLeave={() => setHovered(null)}
-                  className="group flex items-baseline justify-between gap-6 border-t border-primary-foreground/15 py-8 transition-colors last:border-b hover:border-primary-foreground/40"
+                  className="group flex items-baseline justify-between gap-4 border-t border-primary-foreground/15 py-8 transition-colors last:border-b hover:border-primary-foreground/40 sm:gap-6"
                 >
-                  <div className="flex items-baseline gap-6">
+                  <div className="flex min-w-0 items-baseline gap-4 sm:gap-6">
                     <span className="font-display text-base text-secondary tabular-nums">
                       0{i + 1}
                     </span>
-                    <span className="font-display text-3xl !text-primary-foreground transition-transform duration-500 group-hover:translate-x-3 sm:text-5xl lg:text-6xl">
+                    <span className="font-display text-2xl !text-primary-foreground transition-transform duration-500 group-hover:translate-x-3 min-[400px]:text-3xl sm:text-5xl xl:text-6xl">
                       {s.name}
                     </span>
                   </div>
-                  <span className="hidden max-w-xs text-right text-sm text-primary-foreground/70 lg:block">
+                  <span className="hidden max-w-xs text-right text-sm text-primary-foreground/70 xl:block">
                     {s.blurb}
                   </span>
-                  <span className="font-display text-secondary text-3xl opacity-0 transition-all duration-500 group-hover:opacity-100">
+                  <span className="hidden font-display text-secondary text-3xl opacity-0 transition-all duration-500 group-hover:opacity-100 sm:inline">
                     →
                   </span>
                 </Link>
@@ -210,7 +221,7 @@ function Home() {
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <p className="eyebrow">Cómo es la atención</p>
-            <h2 className="mt-6 text-5xl lg:text-6xl">Tres momentos, sin sobresaltos.</h2>
+            <h2 className="mt-6 text-[2.1rem] min-[380px]:text-[2.6rem] min-[480px]:text-5xl lg:text-6xl">Tres momentos, sin sobresaltos.</h2>
           </div>
         </div>
 
@@ -236,7 +247,7 @@ function Home() {
       <section className="container-fluid grid gap-16 py-32 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <p className="eyebrow">Preguntas frecuentes</p>
-          <h2 className="mt-6 text-5xl lg:text-6xl">Lo que solés preguntarnos.</h2>
+          <h2 className="mt-6 text-[2.1rem] min-[380px]:text-[2.6rem] min-[480px]:text-5xl lg:text-6xl">Lo que solés preguntarnos.</h2>
           <p className="mt-6 max-w-sm text-muted-foreground leading-relaxed">
             Y si quedó algo más, escribinos. Nos gusta responder en palabras simples.
           </p>
@@ -279,21 +290,36 @@ function Home() {
 
       {/* CONTACTO CTA */}
       <section id="contacto" className="container-fluid pb-12">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-primary px-8 py-24 text-primary-foreground sm:px-16 lg:px-24">
+        <div className="relative overflow-hidden rounded-[2.5rem] bg-primary px-5 py-16 text-primary-foreground sm:px-16 sm:py-24 lg:px-24">
           <p className="eyebrow !text-primary-foreground/70">Reservá tu turno</p>
-          <h2 className="mt-6 max-w-4xl text-5xl leading-[1.05] !text-primary-foreground lg:text-7xl">
+          <h2 className="mt-6 max-w-4xl text-[2.1rem] leading-[1.05] !text-primary-foreground min-[380px]:text-[2.6rem] min-[480px]:text-5xl lg:text-7xl">
             Cuando quieras venir,
             <br />
             <span className="text-secondary">acá estamos.</span>
           </h2>
-          <div className="mt-12 flex flex-wrap items-center gap-6">
+          <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6">
             <a
-              href="mailto:hola@masconsultorios.com"
-              className="inline-flex items-center gap-3 rounded-full bg-primary-foreground px-8 py-4 font-medium text-primary transition-all hover:bg-secondary hover:text-primary-foreground"
+              href={`mailto:${CONTACT.email}`}
+              className="inline-flex items-center gap-3 rounded-full bg-primary-foreground w-full justify-center px-6 py-4 text-center font-medium [overflow-wrap:anywhere] sm:w-auto sm:px-8 text-primary transition-all hover:bg-secondary hover:text-primary-foreground"
             >
-              hola@masconsultorios.com →
+              {CONTACT.email} →
             </a>
-            <span className="text-primary-foreground/70">o llamanos al +54 11 0000 0000</span>
+            <a
+              href={CONTACT.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 rounded-full bg-secondary w-full justify-center px-6 py-4 text-center font-medium [overflow-wrap:anywhere] sm:w-auto sm:px-8 text-white transition-all hover:bg-secondary/85"
+            >
+              <MessageCircle className="h-5 w-5" aria-hidden="true" />
+              WhatsApp {CONTACT.phoneDisplay}
+            </a>
+            <a
+              href={CONTACT.phoneTel}
+              className="inline-flex items-center gap-3 rounded-full border border-primary-foreground/30 bg-primary-foreground/10 w-full justify-center px-6 py-4 text-center font-medium [overflow-wrap:anywhere] sm:w-auto sm:px-8 text-primary-foreground transition-all hover:bg-primary-foreground/20"
+            >
+              <Phone className="h-5 w-5" aria-hidden="true" />
+              Llamanos {CONTACT.phoneDisplay}
+            </a>
           </div>
         </div>
       </section>
